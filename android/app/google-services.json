@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "491938607735",
+    "firebase_url": "https://rompforbusiness.firebaseio.com",
+    "project_id": "rompforbusiness",
+    "storage_bucket": "rompforbusiness.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491938607735:android:bacec1f47cd48ff6e00c72",
+        "android_client_info": {
+          "package_name": "com.romp.flut"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491938607735-ig0gctgl5jttp3hq3a7ct40v56lctbbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoHE67jclT0UpUPWzKq2o2J0QZMkYlNeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491938607735-ig0gctgl5jttp3hq3a7ct40v56lctbbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:491938607735:android:7a5010bfabbaf9cfe00c72",
+        "android_client_info": {
+          "package_name": "com.romp.rompmerchant"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "491938607735-ig0gctgl5jttp3hq3a7ct40v56lctbbd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDoHE67jclT0UpUPWzKq2o2J0QZMkYlNeo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "491938607735-ig0gctgl5jttp3hq3a7ct40v56lctbbd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
