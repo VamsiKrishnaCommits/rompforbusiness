@@ -52,12 +52,9 @@ class _WeaklyrepState extends State<Weaklyrep> {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
+      statusBarColor: Colors.purple,
     ));
-    SystemChrome.setPreferredOrientations([ // Only vertical orientation
-      DeviceOrientation.portraitUp,
-      DeviceOrientation.portraitDown,
-    ]);
+
     return MaterialApp(
       home: Scaffold(
         body: SafeArea(

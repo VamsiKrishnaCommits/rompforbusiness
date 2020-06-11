@@ -5,7 +5,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'ManagerCheckout.dart';
 
 void main(){
-  runApp(new manager());
+  runApp(new mee());
 }
 //loginpage
 class mee extends StatefulWidget {
@@ -28,7 +28,6 @@ class _meeState extends State<mee> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    print("hey okay");
     data=firebase.reference();
   }
   @override
@@ -113,31 +112,34 @@ class _meeState extends State<mee> {
                               RaisedButton(
                                 color: Colors.cyanAccent,
                                 onPressed:() {
-                                  Navigator.push(context,  MaterialPageRoute(builder: (context) => Myapp()));
-                                },
+                                  Navigator.pushAndRemoveUntil(
+                                    context,
+                                    MaterialPageRoute(builder: (context) => manager()),
+                                        (Route<dynamic> route) => false,
+                                  );                                },
                                 child: Text("Sign Up!"),
                               )
                               ,
                               Padding(
                                   padding: EdgeInsets.only(top:30),
                                   child:FractionallySizedBox(
-                                   widthFactor: 9/10,
-                                child: Divider(
-                                height: 10.0,
-                                    color: Colors.purple,
-                                    thickness: 3.0,
-                              )
-                              ))
+                                      widthFactor: 9/10,
+                                      child: Divider(
+                                        height: 10.0,
+                                        color: Colors.purple,
+                                        thickness: 3.0,
+                                      )
+                                  ))
                               ,
                               Padding(
-                                padding:EdgeInsets.only(top:30),
+                                  padding:EdgeInsets.only(top:30),
                                   child: RaisedButton(
-                                    color: Colors.cyanAccent,
-                                onPressed: (){
-                                  Navigator.push(context,  MaterialPageRoute(builder: (context) => register()));
-                                },
+                                      color: Colors.cyanAccent,
+                                      onPressed: (){
+                                        Navigator.push(context,  MaterialPageRoute(builder: (context) => register()));
+                                      },
                                       child: Text("Dont have an account? Register here!")
-                              ))
+                                  ))
                             ]
                         )
                     )
@@ -159,7 +161,7 @@ class _registerState extends State<register> {
     // TODO: implement initState
     super.initState();
   }
-var al=Alignment.topCenter;
+  var al=Alignment.topCenter;
   final control=TextEditingController();
   final control2=TextEditingController();
   var con;
@@ -172,75 +174,75 @@ var al=Alignment.topCenter;
       });
     });
     return Container(
-      child: MaterialApp(
-        title: "Register",home:
+        child: MaterialApp(
+            title: "Register",home:
         Builder(
-          builder:(context)=>Center(
-            child:Scaffold(
-              appBar: AppBar(
-                title: Text("Register"),
-              ),
-              body:
-              AnimatedContainer(
-                color: Colors.cyanAccent,
-                duration: Duration(seconds: 1),
-                curve: Curves.elasticOut,
-                alignment:Alignment.topRight,
-                 child:GestureDetector(
-                  child :Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      Card(
-                          child: TextField(
-                            onChanged: (string){
-                              if(string.length==10){
-                                phonenumber="+91"+string;
-                                print(phonenumber);
-                                Phone.number=phonenumber;
-                              }
-                            },
-                    controller: control,
-                    decoration: InputDecoration(
-                      hintText:  "Phone Number",
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(3.0),
-                          borderSide: BorderSide(
-                              style: BorderStyle.solid
+            builder:(context)=>Center(
+              child:Scaffold(
+                appBar: AppBar(
+                  title: Text("Register"),
+                ),
+                body:
+                AnimatedContainer(
+                  color: Colors.cyanAccent,
+                  duration: Duration(seconds: 1),
+                  curve: Curves.elasticOut,
+                  alignment:Alignment.topRight,
+                  child:GestureDetector(
+                      child :Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: <Widget>[
+                          Card(
+                              child: TextField(
+                                onChanged: (string){
+                                  if(string.length==10){
+                                    phonenumber="+91"+string;
+                                    print(phonenumber);
+                                    Phone.number=phonenumber;
+                                  }
+                                },
+                                controller: control,
+                                decoration: InputDecoration(
+                                  hintText:  "Phone Number",
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(3.0),
+                                      borderSide: BorderSide(
+                                          style: BorderStyle.solid
+                                      )
+                                  ),
+                                ),
+                              )),
+                          Builder(
+                              builder:(context)=>Center(
+                                  child: RaisedButton(
+                                    child: Text("Get OTP"),
+                                    onPressed:() async {
+                                      Phone.ph=phone;
+                                      con=context;
+                                      await phone.verifyPhoneNumber(
+                                          phoneNumber: phonenumber,
+                                          timeout: Duration(seconds: 0),
+                                          verificationCompleted: (authCredential) => _verificationComplete(authCredential, context),
+                                          verificationFailed: (authException) => _verificationFailed(authException, context),
+                                          codeAutoRetrievalTimeout: (verificationId) => _codeAutoRetrievalTimeout(verificationId),
+                                          // called when the SMS code is sent
+                                          codeSent: (verificationId, [code]) => _smsCodeSent(verificationId, [code])
+                                      );
+                                    },
+                                  ))
                           )
-                      ),
-                    ),
-                  )),
-                      Builder(
-                        builder:(context)=>Center(
-                      child: RaisedButton(
-                        child: Text("Get OTP"),
-                        onPressed:() async {
-                          Phone.ph=phone;
-                          con=context;
-                          await phone.verifyPhoneNumber(
-                              phoneNumber: phonenumber,
-                              timeout: Duration(seconds: 0),
-                              verificationCompleted: (authCredential) => _verificationComplete(authCredential, context),
-                              verificationFailed: (authException) => _verificationFailed(authException, context),
-                              codeAutoRetrievalTimeout: (verificationId) => _codeAutoRetrievalTimeout(verificationId),
-                              // called when the SMS code is sent
-                              codeSent: (verificationId, [code]) => _smsCodeSent(verificationId, [code])
-                          );
-                        },
-                      ))
+                        ],
                       )
-              ],
-            )
-          ),
-        ),
-      ),
-      ) )));
+                  ),
+                ),
+              ),
+            ) )));
   }
 
   _verificationComplete(AuthCredential authCredential, BuildContext context) {
     phone.signInWithCredential(authCredential).then((authResult) {
-SnackBar s=new SnackBar(content: Text("verified"),duration: Duration(seconds: 0),);
-Scaffold.of(context).showSnackBar(s);
+      SnackBar s=new SnackBar(content: Text("verified"),duration: Duration(seconds: 0),);
+      Scaffold.of(context).showSnackBar(s);
     });
   }
   _verificationFailed(AuthException authException, BuildContext context) {
@@ -273,9 +275,9 @@ Scaffold.of(context).showSnackBar(s);
                     Scaffold.of(con).showSnackBar(s);
                     Navigator.push(context, MaterialPageRoute(builder: (context)=>registername()));
                   });
-                  },)
+                },)
             ) ],),
-       );
+    );
 
   }
 }
@@ -311,44 +313,45 @@ class _registernameState extends State<registername> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: MaterialApp(
-        title: "Register",
-home: Scaffold(
-  appBar: AppBar(title:Text("Register")),
-  body: Container(
-    child: Column(
-      children: <Widget>[
-        TextField(
-          controller: textEditingController,
-          decoration: InputDecoration(
-            hintText: "Store Name / Company Name"
+        child: MaterialApp(
+          title: "Register",
+          home: Scaffold(
+            appBar: AppBar(title:Text("Register")),
+            body: Container(
+                child: Column(
+                  children: <Widget>[
+                    TextField(
+                      controller: textEditingController,
+                      decoration: InputDecoration(
+                          hintText: "Your Name"
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Next"),
+                      onPressed:(){
+                        FirebaseDatabase f=FirebaseDatabase.instance;
+                        DatabaseReference da=f.reference();
+                        da.child("OwnerNames").child(textEditingController.text).set("exist").then((_){
+                        }).catchError((onError){
+                        });
+                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
+                        {
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> registerbusiness()));
+
+                        }
+
+                        ).catchError((onError){
+                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
+                          Scaffold.of(context).showSnackBar(s);
+                        });
+                      } ,
+                    )
+                  ],
+                )
+            ),
           ),
-        ),
-        RaisedButton(
-          child: Text("Take me to the world of romp"),onPressed:(){
-            FirebaseDatabase f=FirebaseDatabase.instance;
-            DatabaseReference da=f.reference();
-            da.child("Stores").child(textEditingController.text).set("exist").then((_){
-            }).catchError((onError){
-            });
-            da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
-            {
-
-              Navigator.push(context, MaterialPageRoute(builder: (context)=> Myapp()));
-
-            }
-
-            ).catchError((onError){
-              SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
-              Scaffold.of(context).showSnackBar(s);
-            });
-        } ,
         )
-      ],
-    )
-  ),
-),
-      )
     );
   }
 }
@@ -358,3 +361,169 @@ class Phone{
   static var ph;
 }
 
+class registerbusiness extends StatefulWidget {
+  @override
+  _registerbusinessState createState() => _registerbusinessState();
+}
+
+class _registerbusinessState extends State<registerbusiness> {
+  TextEditingController textEditingController=TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: MaterialApp(
+          title: "Register",
+          home: Scaffold(
+            appBar: AppBar(title:Text("Register")),
+            body: Container(
+                child: Column(
+                  children: <Widget>[
+                    TextField(
+                      controller: textEditingController,
+                      decoration: InputDecoration(
+                          hintText: "Name Of your business"
+                      ),
+                    ),
+                    RaisedButton(
+                      child: Text("Go"),
+                      onPressed:(){
+                        FirebaseDatabase f=FirebaseDatabase.instance;
+                        DatabaseReference da=f.reference();
+                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
+                        }).catchError((onError){
+                        });
+                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
+                        {
+
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> multiplebranches()));
+
+                        }
+
+                        ).catchError((onError){
+                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
+                          Scaffold.of(context).showSnackBar(s);
+                        });
+                      } ,
+                    )
+                  ],
+                )
+            ),
+          ),
+        )
+    );
+  }
+}
+class multiplebranches extends StatefulWidget {
+  @override
+  _multiplebranchesState createState() => _multiplebranchesState();
+}
+
+class _multiplebranchesState extends State<multiplebranches> {
+  TextEditingController textEditingController=TextEditingController();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: MaterialApp(
+          title: "Register",
+          home: Scaffold(
+            appBar: AppBar(title:Text("Register")),
+            body: Container(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                        "Do you own more than one branch"
+                    ),
+                    RaisedButton(
+                      child: Text("Yes"),
+                      onPressed:(){
+                        FirebaseDatabase f=FirebaseDatabase.instance;
+                        DatabaseReference da=f.reference();
+                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
+                        }).catchError((onError){
+                        });
+                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
+                        {
+                          Navigator.push(context, MaterialPageRoute(builder: (context)=> operate()));
+                        }
+                        ).catchError((onError){
+                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
+                          Scaffold.of(context).showSnackBar(s);
+                        });
+                      } ,
+                    ),
+                    RaisedButton(
+                      child: Text("Nah"),
+                      onPressed:(){
+                        FirebaseDatabase f=FirebaseDatabase.instance;
+                        DatabaseReference da=f.reference();
+                        da.child("Stores").child(textEditingController.text).set("exist").then((_){
+                        }).catchError((onError){
+                        });
+                        da.child(textEditingController.text).child("owner").set(Phone.number).then((_)
+                        {
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(builder: (context) => manager()),
+                                (Route<dynamic> route) => false,
+                          );                        }
+
+                        ).catchError((onError){
+                          SnackBar s=new SnackBar(content: Text(onError.toString()),duration: Duration(seconds: 3));
+                          Scaffold.of(context).showSnackBar(s);
+                        });
+                      } ,
+                    )
+                  ],
+                )
+            ),
+          ),
+        )
+    );
+  }
+}
+class operate extends StatefulWidget {
+  @override
+  _operateState createState() => _operateState();
+}
+
+class _operateState extends State<operate> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+        child: MaterialApp(
+          title: "Register",
+          home: Scaffold(
+            appBar: AppBar(title:Text("Register")),
+            body: Container(
+                child: Column(
+                  children: <Widget>[
+                    Text(
+                        "Do you operate any branch on your own ?"
+                    ),
+                    RaisedButton(
+                      child: Text("Yes"),
+                      onPressed:(){
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => manager()),
+                              (Route<dynamic> route) => false,
+                        );                      }  ,
+                    ),
+                    RaisedButton(
+                      child: Text("Nah"),
+                      onPressed:(){
+                        Navigator.pushAndRemoveUntil(
+                          context,
+                          MaterialPageRoute(builder: (context) => manager()),
+                              (Route<dynamic> route) => false,
+                        );                      } ,
+                    )
+                  ],
+                )
+            ),
+          ),
+        )
+    );
+  }
+}
