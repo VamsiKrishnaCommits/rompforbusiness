@@ -57,6 +57,24 @@ class _contentState extends State<content> {
           backgroundColor: Colors.white10.withOpacity(0.0),
           elevation: 0,
         ),
+          floatingActionButtonLocation: FloatingActionButtonLocation.endDocked,
+          floatingActionButton: FloatingActionButton(
+            onPressed: () { },
+            tooltip: 'Increment',
+            child: Icon(Icons.add),
+            elevation: 2.0,
+          ),
+          bottomNavigationBar: BottomAppBar(
+            shape: CircularNotchedRectangle(),
+            child: Row(
+              mainAxisSize: MainAxisSize.max,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Icon(Icons.monetization_on,size: 40,color: Colors.white,)
+              ],
+            ),
+            color: Colors.blue,
+          ),
         body:Container(
       child:
       SingleChildScrollView(
