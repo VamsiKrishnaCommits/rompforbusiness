@@ -145,6 +145,7 @@ class _searchState extends State<search> {
         icon: Icon(Icons.search, color: Colors.purple,
         ));
   }
+
 }
 class canc extends StatefulWidget {
   @override
